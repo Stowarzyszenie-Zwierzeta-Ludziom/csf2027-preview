@@ -5,7 +5,7 @@
 (() => {
   /* ── Submission form (section #form-demo) ── */
   const SUBMISSION = {
-    title: 'Do shelter dogs follow human pointing after short training? A pilot study',
+    title: 'Shelter dogs follow human pointing more often after short training: a pilot study',
     search: 'Tomas Example',
     keywords: 'dog cognition, human-dog communication, shelter dogs',
     tldr: 'Shelter dogs used human pointing more often after five short training sessions.',
@@ -16,8 +16,21 @@
       'Results: Trained dogs chose the indicated bowl more often after training than before (Wilcoxon signed-rank test, p < .05); control dogs did not change.\n\n' +
       'Discussion/Conclusion: Brief training may help shelter dogs use human gestures, which could support adoption. A larger, preregistered study is planned.',
     typed: 132,
-    max: 5000
+    max: 5000,
+    mainTopic: 'Communication & Social Cognition',
+    addTopic: 'Shelter, Rehoming & Population Management'
   };
+
+  // The topic menus list the categories of the page's Topics section (#topics).
+  const TOPICS = [...document.querySelectorAll('#topics .topic-name')].map((t) => t.textContent.trim());
+
+  function fillTopicMenu(menu) {
+    menu.replaceChildren(...TOPICS.map((t) => {
+      const opt = document.createElement('span');
+      opt.textContent = t;
+      return opt;
+    }));
+  }
 
   const submissionSteps = ({ q, wait, focusOn, moveTo, click, type, fill, pick, tick, screen }) => ({
     async loggedout(c) {
@@ -93,6 +106,14 @@
       box.querySelector('.v').textContent = SUBMISSION.abstract;
       abstractCounter(q);
       await wait(900, c);
+    },
+    async maintopic(c) {
+      fillTopicMenu(q('main-topic-menu'));
+      await pick('f-main-topic', 'main-topic', 'main-topic-menu', SUBMISSION.mainTopic, c);
+    },
+    async addtopics(c) {
+      fillTopicMenu(q('add-topic-menu'));
+      await pick('f-add-topics', 'add-topic', 'add-topic-menu', SUBMISSION.addTopic, c);
     },
     email: (c) => tick('email', c),
     data: (c) => tick('data', c),
@@ -439,7 +460,9 @@
       const menu = q(menuName);
       menu.classList.add('is-on');
       await wait(500, c);
-      const opt = menu.querySelector('span');
+      const opts = [...menu.querySelectorAll('span')];
+      const opt = opts.find((o) => o.textContent === value) || opts[0];
+      if (menu.scrollHeight > menu.clientHeight) menu.scrollTop = opt.offsetTop - menu.clientHeight / 2;
       await moveTo(opt, c, 0.2);
       opt.classList.add('is-hover');
       await click(opt, c);

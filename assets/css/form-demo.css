@@ -443,6 +443,13 @@
 .or-menu.is-on { display: block; }
 .or-menu span { display: block; padding: 7px 10px; }
 .or-menu span.is-hover { background: #deebff; }
+/* Topic dropdowns: OpenReview's select widget has no arrow; long option list scrolls */
+.or-select-topic, .or-menu-topic { max-width: 560px; }
+.or-select-topic::after { display: none; }
+.or-menu-topic { position: relative; max-height: 220px; overflow-y: auto; font-size: 13px; }
+.or-menu-topic span { padding: 6px 10px; line-height: 1.35; }
+.or-menu-topic::-webkit-scrollbar-track { background: #f4f4f4; }
+.or-menu-topic::-webkit-scrollbar-thumb { background: #c4c4c4; }
 .or-tags { display: flex; flex-wrap: wrap; gap: 4px; }
 .or-tag { padding: 4px 10px; background: var(--or-tag); border-radius: 2px; }
 .or-tag em { color: var(--or-red); }

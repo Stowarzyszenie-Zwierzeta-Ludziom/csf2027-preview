@@ -1,6 +1,6 @@
 # csf2027.pl – preview
 
-A preview of https://csf2027.pl: the snapshot of commit `1974540` of the private repository
+A preview of https://csf2027.pl: the snapshot of commit `aace359` of the private repository
 `Stowarzyszenie-Zwierzeta-Ludziom/csf2027-site`, built on 2026-10-27 with `tools/build_preview.py`.
 It is updated by hand, so it can be older than the repository.
 

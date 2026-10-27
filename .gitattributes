@@ -1,0 +1,7 @@
+# text files with LF line endings on every system; images and fonts untouched
+* text=auto eol=lf
+*.webp binary
+*.png binary
+*.jpg binary
+*.ico binary
+*.woff2 binary
