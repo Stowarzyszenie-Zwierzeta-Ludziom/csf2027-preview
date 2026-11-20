@@ -21,11 +21,11 @@
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="preload" href="../assets/fonts/open-sans/open-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../assets/css/main.css?v=20261027-2">
-<link rel="stylesheet" href="../assets/css/call-for-abstracts.css?v=20261027-2">
-<link rel="stylesheet" href="../assets/css/form-demo.css?v=20261027-2">
-<script src="../assets/js/main.js?v=20261027-2" defer></script>
-<script src="../assets/js/form-demo.js?v=20261027-2" defer></script>
+<link rel="stylesheet" href="../assets/css/main.css?v=20261120-1">
+<link rel="stylesheet" href="../assets/css/call-for-abstracts.css?v=20261120-1">
+<link rel="stylesheet" href="../assets/css/form-demo.css?v=20261120-1">
+<script src="../assets/js/main.js?v=20261120-1" defer></script>
+<script src="../assets/js/form-demo.js?v=20261120-1" defer></script>
 </head>
 <body>
 
@@ -84,7 +84,7 @@
         </li>
         <li>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          <span>Max. <strong>5,000 characters</strong></span>
+          <span>Max. <strong>400 words</strong></span>
         </li>
         <li>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -95,7 +95,7 @@
 
     <div class="cfa-hero-visual">
       <svg class="hero-art" viewBox="0 0 460 400" role="img" aria-labelledby="artTitle">
-        <title id="artTitle">Illustration: a structured abstract with five headings and a 5,000-character limit, in front of a poster and a set of slides</title>
+        <title id="artTitle">Illustration: a structured abstract with five headings and a 400-word limit, in front of a poster and a set of slides</title>
         <defs>
           <filter id="artShadow" x="-30%" y="-30%" width="160%" height="160%">
             <feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#000" flood-opacity="0.5"/>
@@ -182,13 +182,13 @@
           <rect x="176" y="325" width="86" height="5" rx="2.5" fill="rgba(255,255,255,0.09)"/>
         </g>
 
-        <!-- 5,000 characters badge -->
+        <!-- 400 words badge -->
         <g class="art-badge">
           <g filter="url(#artShadow)">
             <circle cx="352" cy="318" r="46" fill="#f7d117"/>
           </g>
-          <text x="352" y="322" text-anchor="middle" font-family="'Open Sans', sans-serif" font-size="24" font-weight="800" fill="#0f0e0c">5,000</text>
-          <text x="352" y="338" text-anchor="middle" font-family="'Open Sans', sans-serif" font-size="8" font-weight="700" letter-spacing="1" fill="#0f0e0c">CHARACTERS</text>
+          <text x="352" y="322" text-anchor="middle" font-family="'Open Sans', sans-serif" font-size="24" font-weight="800" fill="#0f0e0c">400</text>
+          <text x="352" y="338" text-anchor="middle" font-family="'Open Sans', sans-serif" font-size="8" font-weight="700" letter-spacing="1" fill="#0f0e0c">WORDS</text>
         </g>
       </svg>
     </div>
@@ -278,7 +278,7 @@
           <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="8" width="30" height="35" rx="4"/><rect x="17" y="4.5" width="14" height="7" rx="2" fill="#262626"/><polyline points="15 20 17.5 22.5 21.5 18"/><line x1="25" y1="20.5" x2="33" y2="20.5"/><polyline points="15 29 17.5 31.5 21.5 27"/><line x1="25" y1="29.5" x2="33" y2="29.5"/><line x1="16" y1="37.5" x2="20" y2="37.5"/><line x1="25" y1="37.5" x2="31" y2="37.5"/></svg>
         </div>
         <h3>Prepare</h3>
-        <p>Title, co-authors’ profiles, keywords, categories and the abstract (max. 5,000 characters).</p>
+        <p>Title, co-authors’ profiles, keywords, categories and the abstract (max. 400 words).</p>
         <p class="step-small">Title in sentence case – capital letters only for the first word and for names, e.g. “Free-ranging dogs in Warsaw follow human pointing gestures”. Keep the usual capitals of abbreviations and scientific names (e.g. DNA, <em>Canis lupus</em>). No full stop at the end, no author names.</p>      </li>
 
       <li class="step reveal reveal-delay-2">
@@ -731,7 +731,6 @@
                     <div class="or-tabs"><span class="or-tab is-on">Write</span><span class="or-tab">Preview</span></div>
                     <div class="or-textarea" data-fd="abstract"><span class="v"></span></div>
                     <div class="or-mdbar"><b>M&darr;</b>TeX is supported</div>
-                    <div class="or-counter" data-fd="counter">Characters remaining: <span>5000</span></div>
                   </div>
 
                   <!-- Topic fields as specified on 27 Oct 2026 (not yet seen live); the
@@ -864,7 +863,7 @@
           <li data-step="authors" data-label="Authors"><strong>Authors.</strong> <span class="fd-what">You are already listed. Find each co-author by name or profile ID and click +.</span> <span class="fd-why">Names appear as in each author’s OpenReview profile. All authors must have one.</span></li>
           <li data-step="keywords" data-label="Keywords"><strong>Keywords.</strong> <span class="fd-what">Add a few keywords, separated by commas.</span> <span class="fd-why">The form requires them.</span></li>
           <li data-step="tldr" data-label="TL;DR"><strong>TL;DR.</strong> <span class="fd-what">Optional: one sentence about your study.</span> <span class="fd-why">You can leave it empty.</span></li>
-          <li data-step="abstract" data-label="Abstract"><strong>Abstract.</strong> <span class="fd-what">Paste the five sections with their headings.</span> <span class="fd-why">Max. 5,000 characters, headings and spaces included. The counter shows what is left.</span></li>
+          <li data-step="abstract" data-label="Abstract"><strong>Abstract.</strong> <span class="fd-what">Paste the five sections with their headings.</span> <span class="fd-why">Max. 400 words, headings and references included. The form checks the limit when you click Submit.</span></li>
           <li data-step="maintopic" data-label="Main Topic"><strong>Main Topic.</strong> <span class="fd-what">Choose the one category that fits your abstract best.</span> <span class="fd-why">Required. The 18 categories are described under “Topics” below.</span></li>
           <li data-step="addtopics" data-label="Additional Topics"><strong>Additional Topics.</strong> <span class="fd-what">Optional: up to three more categories that also fit, one per field.</span> <span class="fd-why">Each must differ from the main topic and from the others. Leave the rest empty.</span></li>
           <li data-step="email" data-label="Email Sharing"><strong>Email Sharing.</strong> <span class="fd-what">Tick the box.</span> <span class="fd-why">All author e-mails are shared with the Program Chairs.</span></li>
@@ -966,8 +965,8 @@
 
       <ul class="rules">
         <li class="rule reveal">
-          <span class="rule-big rule-big--sm" aria-hidden="true">5,000</span>
-          <span class="rule-text"><strong>Max. 5,000 characters</strong><span>Headings and spaces count as characters. The form checks the limit.</span></span>
+          <span class="rule-big rule-big--sm" aria-hidden="true">400</span>
+          <span class="rule-text"><strong>Max. 400 words</strong><span>Headings and references count as words. The form checks the limit when you submit.</span></span>
         </li>
         <li class="rule reveal reveal-delay-1">
           <span class="rule-big" aria-hidden="true">EN</span>
@@ -1082,7 +1081,7 @@
       <div class="accordion-item">
         <h3><button class="accordion-trigger" id="faqQ5" aria-expanded="false" aria-controls="faqA5"><span class="accordion-q">Do the headings count towards the limit?</span><span class="accordion-icon" aria-hidden="true"></span></button></h3>
         <div class="accordion-body" id="faqA5" role="region" aria-labelledby="faqQ5">
-          <p>Yes. The 5,000-character limit includes the five headings and the spaces.</p>
+          <p>Yes. The 400-word limit includes the five headings and any references; the title is a separate field and does not count. The form counts any text between spaces or line breaks as a word, so the count in Word or Google Docs can differ slightly.</p>
         </div>
       </div>
 

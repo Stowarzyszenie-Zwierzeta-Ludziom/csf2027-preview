@@ -16,7 +16,6 @@
       'Results: Trained dogs chose the indicated bowl more often after training than before (Wilcoxon signed-rank test, p < .05); control dogs did not change.\n\n' +
       'Discussion/Conclusion: Brief training may help shelter dogs use human gestures, which could support adoption. A larger, preregistered study is planned.',
     typed: 132,
-    max: 5000,
     mainTopic: 'Communication & Social Cognition',
     addTopic: 'Shelter, Rehoming & Population Management'
   };
@@ -104,7 +103,7 @@
       await type(box, SUBMISSION.abstract.slice(0, SUBMISSION.typed), c, 32);
       await wait(500, c);
       box.querySelector('.v').textContent = SUBMISSION.abstract;
-      abstractCounter(q);
+      box.scrollTop = box.scrollHeight;
       await wait(900, c);
     },
     async maintopic(c) {
@@ -133,15 +132,6 @@
       await focusOn(q('flash'), c);
     }
   });
-
-  function abstractCounter(q) {
-    const box = q('abstract');
-    const n = box.querySelector('.v').textContent.length;
-    const counter = q('counter');
-    counter.classList.toggle('is-on', n > 0);
-    counter.querySelector('span').textContent = String(SUBMISSION.max - n);
-    box.scrollTop = box.scrollHeight;
-  }
 
   /* ── Profile sign-up (section #signup-demo) ── */
   const PROFILE = {
@@ -425,7 +415,8 @@
     }
 
     function afterInput(box) {
-      if (box.dataset.fd === 'abstract') abstractCounter(q);
+      // Keep the end of the abstract in view while it is typed.
+      if (box.dataset.fd === 'abstract') box.scrollTop = box.scrollHeight;
     }
 
     async function type(box, text, c, speed = 45) {

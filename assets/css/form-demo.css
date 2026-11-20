@@ -391,8 +391,6 @@
 }
 .or-mdbar { padding: 4px; background: var(--or-field); color: var(--or-btn); font-size: 12px; }
 .or-mdbar b { display: inline-block; padding: 0 3px; margin-right: 4px; border: 1px solid currentColor; border-radius: 2px; font-size: 9px; line-height: 12px; }
-.or-counter { display: none; margin-top: 4px; color: var(--or-grey); font-size: 12px; }
-.or-counter.is-on { display: block; }
 
 /* Radio buttons */
 .or-radio { display: flex; align-items: center; gap: 6px; }
