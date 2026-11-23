@@ -261,6 +261,107 @@ nav .container {
 .nav-center a:hover::after,
 .nav-center a[aria-current="page"]::after { width: 100%; }
 
+/* Awards: a disclosure menu with the two award pages. main.js opens it (click, Enter, Space,
+   mouse hover) and keeps aria-expanded in step; without JavaScript, hover and keyboard focus
+   show it. On phones (768 px and below) the links are listed in the open menu instead. */
+.nav-has-menu { position: relative; }
+
+.nav-menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: inherit;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color var(--transition);
+}
+.nav-menu-toggle::after {
+  /* the same underline as the other nav links */
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width var(--transition);
+  border-radius: 1px;
+}
+.nav-menu-chevron { width: 14px; height: 14px; flex-shrink: 0; transition: transform var(--transition); }
+.nav-menu-toggle:hover,
+.nav-has-menu.open > .nav-menu-toggle,
+.nav-has-menu.is-current > .nav-menu-toggle { color: var(--text-primary); }
+.nav-menu-toggle:hover::after,
+.nav-has-menu.is-current > .nav-menu-toggle::after { width: calc(100% - 18px); }
+.nav-has-menu.open .nav-menu-chevron { transform: rotate(180deg); }
+
+.nav-group-label { display: none; } /* phones only */
+
+.nav-submenu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 14px);
+  right: -12px;
+  min-width: 250px;
+  padding: 6px;
+  list-style: none;
+  background: var(--bg-card);
+  border: 1px solid var(--border-hover);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+}
+.nav-submenu::before {
+  /* bridge over the gap, so the menu stays open while the mouse moves down to it */
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  top: -20px;
+  height: 20px;
+}
+nav.scrolled .nav-submenu { top: calc(100% + 18px); } /* below the bar's bottom edge */
+@media (min-width: 769px) {
+  html:not(.js) .nav-has-menu:hover > .nav-submenu,
+  html:not(.js) .nav-has-menu:focus-within > .nav-submenu,
+  .nav-has-menu.open > .nav-submenu { display: block; }
+}
+@media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+  .nav-has-menu.open > .nav-submenu { animation: navMenuIn 0.18s ease-out; }
+}
+@keyframes navMenuIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: none; }
+}
+
+.nav-center .nav-submenu a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 14px 0 12px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+.nav-center .nav-submenu a::after { display: none; }
+.nav-center .nav-submenu a::before {
+  /* a dot marks the current page; the space is kept on the other entry so the texts align */
+  content: '';
+  flex-shrink: 0;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: transparent;
+}
+.nav-center .nav-submenu a:hover { background: rgba(255,255,255,0.05); }
+.nav-center .nav-submenu a[aria-current="page"]::before { background: var(--accent); }
+.nav-center .nav-submenu a:focus-visible { outline-offset: -2px; }
+
+
 .nav-right {
   display: flex;
   align-items: center;
@@ -1901,6 +2002,16 @@ footer {
   .nav-center { gap: 16px; }
 }
 
+/* eight items since "Awards" (23 Nov 2026): tighter gaps where the row was too wide;
+   just above the phone menu (769-900 px) the links are also 1 px smaller */
+@media (min-width: 1061px) and (max-width: 1139px) {
+  .nav-center { gap: 22px; }
+}
+@media (min-width: 769px) and (max-width: 900px) {
+  .nav-center { gap: 10px; }
+  .nav-center a, .nav-menu-toggle { font-size: 0.8125rem; }
+}
+
 @media (max-width: 768px) {
   .nav-center { display: none; }
   .nav-center.open {
@@ -1919,6 +2030,44 @@ footer {
   /* "Register" next to the menu button, not in the middle of the bar */
   .nav-logo { margin-right: auto; }
   .nav-right { margin-right: 24px; }
+  /* Awards in the open phone menu: a label and the two pages as ordinary entries */
+  .nav-menu-toggle { display: none; }
+  .nav-group-label {
+    display: block;
+    text-align: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .nav-center .nav-submenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    position: static;
+    min-width: 0;
+    margin-top: 0;
+    padding: 0;
+    background: none;
+    border: 0;
+    box-shadow: none;
+    animation: none;
+  }
+  .nav-center .nav-submenu::before { display: none; }
+  .nav-center .nav-submenu a { padding: 0; white-space: normal; }
+  .nav-center .nav-submenu a::before { display: none; }
+  .nav-center .nav-submenu a[aria-current="page"]::after { display: block; } /* the same underline as the other current links */
+  /* the open phone menu: scrolls inside when the screen is low (landscape); 72 px is the bar's height at the top of the page */
+  .nav-center.open { max-height: calc(100vh - 72px); max-height: calc(100dvh - 72px); overflow-y: auto; overscroll-behavior: contain; }
+  /* 44 px tap targets with a row pitch of 44 px; the underline stays just under the text */
+  .nav-center.open { gap: 0; padding-top: 8px; padding-bottom: 8px; }
+  .nav-center > li > a,
+  .nav-center .nav-submenu a { display: inline-flex; align-items: center; min-height: 44px; }
+  .nav-center > li > a::after,
+  .nav-center .nav-submenu a::after { bottom: 7px; }
+  .nav-center .nav-has-menu { margin-top: 10px; }
 }
 
 @media (max-width: 360px) {

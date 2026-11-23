@@ -42,6 +42,64 @@ const scrollBehavior = () => (reduceMotion.matches ? 'auto' : 'smooth');
 })();
 
 /* ═══════════════════════════════════════
+   NAVIGATION: AWARDS MENU
+   A disclosure button with a list of links (not an ARIA menu). Opens on click, Enter or
+   Space, and on hover for mouse users; closes on Escape (focus back to the button), a click
+   outside, focus leaving the item, or a click on a link. aria-expanded follows the `open`
+   class, which is what shows the list (CSS). On phones the button is hidden and the links
+   are part of the open menu; the block above closes that menu when one is clicked.
+   ═══════════════════════════════════════ */
+(function() {
+  const item = document.querySelector('.nav-has-menu');
+  const button = item && item.querySelector('.nav-menu-toggle');
+  const list = button && document.getElementById(button.getAttribute('aria-controls'));
+  if (!item || !button || !list) return;
+  const mouse = window.matchMedia('(hover: hover) and (pointer: fine)');
+  let byHover = false; // opened by the mouse pointer, not yet clicked
+  let closeTimer = 0;
+
+  function setOpen(open) {
+    clearTimeout(closeTimer);
+    item.classList.toggle('open', open);
+    button.setAttribute('aria-expanded', String(open));
+    if (!open) byHover = false;
+  }
+  const isOpen = () => item.classList.contains('open');
+
+  button.addEventListener('click', () => {
+    // a click on a menu the pointer has just opened keeps it open instead of closing it
+    if (isOpen() && byHover) { byHover = false; return; }
+    setOpen(!isOpen());
+  });
+  const shown = () => button.offsetParent !== null; // false on phones, where the button is hidden
+  item.addEventListener('mouseenter', () => {
+    clearTimeout(closeTimer);
+    if (!mouse.matches || !shown() || isOpen()) return;
+    setOpen(true);
+    byHover = true;
+  });
+  item.addEventListener('mouseleave', () => {
+    // a short delay, so a pointer that cuts a corner on its way to the list does not close it
+    if (!mouse.matches || item.contains(document.activeElement)) return;
+    closeTimer = setTimeout(() => setOpen(false), 400);
+  });
+  item.addEventListener('focusout', e => {
+    if (!item.contains(e.relatedTarget)) setOpen(false);
+  });
+  document.addEventListener('click', e => {
+    if (isOpen() && !item.contains(e.target)) setOpen(false);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Escape' || !isOpen()) return;
+    const hadFocus = item.contains(document.activeElement);
+    setOpen(false);
+    if (hadFocus && shown()) button.focus(); // focus elsewhere (e.g. on Register) stays where it is
+  });
+  list.addEventListener('mousedown', e => e.preventDefault()); // a press on the list keeps focus, so focusout does not close it
+  list.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setOpen(false)));
+})();
+
+/* ═══════════════════════════════════════
    SCROLL REVEAL
    ═══════════════════════════════════════ */
 (function() {
