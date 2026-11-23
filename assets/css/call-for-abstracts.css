@@ -26,6 +26,7 @@ html { scroll-padding-top: 80px; }
    TYPOGRAPHY
    ═══════════════════════════════════════ */
 .accent { color: var(--accent); }
+.nowrap { white-space: nowrap; } /* keeps "p-values" from breaking at the hyphen */
 
 /* ═══════════════════════════════════════
    LAYOUT
@@ -339,6 +340,13 @@ html { scroll-padding-top: 80px; }
 .rule-text strong { display: block; font-size: 1.02rem; color: var(--text-primary); margin-bottom: 2px; }
 .rule-text span { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5; }
 
+/* scientific reporting: a quiet row under the sheet and the rule tiles */
+.reporting { margin-top: 32px; padding-top: 22px; border-top: 1px dashed var(--border-hover); }
+.reporting-title { margin-bottom: 14px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); }
+.reporting-list { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 32px; }
+.reporting-list li { font-size: 0.88rem; line-height: 1.55; color: var(--text-secondary); }
+.reporting-list strong { color: var(--text-primary); }
+
 /* ═══════════════════════════════════════
    PRESENTATION FORMATS
    ═══════════════════════════════════════ */
@@ -408,6 +416,7 @@ html { scroll-padding-top: 80px; }
 .accordion-body:not([hidden]) { animation: fadeIn 0.35s ease; }
 .accordion-body p { font-size: 0.92rem; }
 .accordion-body p + p { margin-top: 10px; }
+.accordion-body ul { max-width: 65ch; margin-top: 8px; padding-left: 1.3em; font-size: 0.92rem; line-height: 1.7; color: var(--text-secondary); } /* main.css resets list padding */
 
 /* ═══════════════════════════════════════
    FINAL CTA + CONTACT
@@ -458,6 +467,7 @@ html { scroll-padding-top: 80px; }
   .cfa-hero-grid { grid-template-columns: 1fr; gap: 36px; }
   .hero-art { margin: 0 auto; max-width: 380px; }
   .req-grid { grid-template-columns: 1fr; }
+  .reporting-list { grid-template-columns: minmax(0, 1fr); }
   .formats-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; }
   .tips { grid-template-columns: 1fr; }
   .cta-band { grid-template-columns: 1fr; padding: 36px 32px; }
