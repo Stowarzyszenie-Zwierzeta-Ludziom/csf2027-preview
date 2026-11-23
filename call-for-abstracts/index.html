@@ -21,11 +21,11 @@
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="preload" href="../assets/fonts/open-sans/open-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../assets/css/main.css?v=20261123-3">
-<link rel="stylesheet" href="../assets/css/call-for-abstracts.css?v=20261123-3">
-<link rel="stylesheet" href="../assets/css/form-demo.css?v=20261123-3">
-<script src="../assets/js/main.js?v=20261123-3" defer></script>
-<script src="../assets/js/form-demo.js?v=20261123-3" defer></script>
+<link rel="stylesheet" href="../assets/css/main.css?v=20261123-4">
+<link rel="stylesheet" href="../assets/css/call-for-abstracts.css?v=20261123-4">
+<link rel="stylesheet" href="../assets/css/form-demo.css?v=20261123-4">
+<script src="../assets/js/main.js?v=20261123-4" defer></script>
+<script src="../assets/js/form-demo.js?v=20261123-4" defer></script>
 </head>
 <body>
 
@@ -241,7 +241,7 @@
       <li class="tl-item">
         <span class="tl-dot" aria-hidden="true"></span>
         <time class="tl-date" datetime="2027-04-10">10 Apr 2027</time>
-        <span class="tl-label">Decisions sent by e-mail from OpenReview</span>
+        <span class="tl-label">Decisions sent by <span class="nowrap">e-mail</span> from OpenReview</span>
       </li>
       <li class="tl-item">
         <span class="tl-dot" aria-hidden="true"></span>
@@ -254,6 +254,8 @@
         <span class="tl-label">Canine Science Forum 2027, Warsaw</span>
       </li>
     </ol>
+    <!-- TODO(dates): payment deadline, decision D5 -->
+    <p class="formats-note reveal">Deadline for registration fee payment for accepted abstracts: to be announced.</p>
   </div>
 </section>
 
@@ -735,7 +737,7 @@
 
                   <div class="or-field" data-fd="f-abstract">
                     <h5 class="or-label">Abstract<span>*</span></h5>
-                    <p class="or-desc">Abstract text. Add TeX formulas using the following formats: $In-line Formula$ or $$Block Formula$$.</p>
+                    <p class="or-desc">Max. 400 words. A word is any text separated by spaces or line breaks. Headings and references count; the title does not. The limit is checked when you click Submit.</p>
                     <div class="or-tabs"><span class="or-tab is-on">Write</span><span class="or-tab">Preview</span></div>
                     <div class="or-textarea" data-fd="abstract"><span class="v"></span></div>
                     <div class="or-mdbar"><b>M&darr;</b>TeX is supported</div>
@@ -871,7 +873,7 @@
           <li data-step="authors" data-label="Authors"><strong>Authors.</strong> <span class="fd-what">You are already listed. Find each co-author by name or profile ID and click +.</span> <span class="fd-why">Names appear as in each author’s OpenReview profile. All authors must have one.</span></li>
           <li data-step="keywords" data-label="Keywords"><strong>Keywords.</strong> <span class="fd-what">Add a few keywords, separated by commas.</span> <span class="fd-why">The form requires them.</span></li>
           <li data-step="tldr" data-label="TL;DR"><strong>TL;DR.</strong> <span class="fd-what">Optional: one sentence about your study.</span> <span class="fd-why">You can leave it empty.</span></li>
-          <li data-step="abstract" data-label="Abstract"><strong>Abstract.</strong> <span class="fd-what">Paste the five sections with their headings.</span> <span class="fd-why">Max. 400 words, headings and references included. The form checks the limit when you click Submit.</span></li>
+          <li data-step="abstract" data-label="Abstract"><strong>Abstract.</strong> <span class="fd-what">Paste your abstract. The five sections are recommended where applicable.</span> <span class="fd-why">Max. 400 words, headings and references included. The form checks the limit when you click Submit.</span></li>
           <li data-step="maintopic" data-label="Main Topic"><strong>Main Topic.</strong> <span class="fd-what">Choose the one category that fits your abstract best.</span> <span class="fd-why">Required. The 18 categories are described under “Topics” below.</span></li>
           <li data-step="addtopics" data-label="Additional Topics"><strong>Additional Topics.</strong> <span class="fd-what">Optional: up to three more categories that also fit, one per field.</span> <span class="fd-why">Each must differ from the main topic and from the others. Leave the rest empty.</span></li>
           <li data-step="email" data-label="Email Sharing"><strong>Email Sharing.</strong> <span class="fd-what">Tick the box.</span> <span class="fd-why">All author e-mails are shared with the Program Chairs.</span></li>
@@ -948,11 +950,13 @@
         Abstract
       </div>
       <h2 id="reqTitle">What your abstract <span class="accent">needs</span></h2>
+      <p>The conference welcomes scientific contributions covering a broad range of topics related to dogs and other canids, including empirical research, theoretical and conceptual contributions, methodological developments, and literature reviews. Both empirical and non-empirical scientific contributions are welcome.</p>
+      <p>Abstracts must clearly communicate the scientific background, objectives, approach, and key findings or contributions of the work. All submissions must present a substantive scientific contribution relevant to the aims and scope of the conference.</p>
     </div>
 
     <div class="req-grid">
       <figure class="sheet reveal" aria-labelledby="sheetCaption">
-        <figcaption id="sheetCaption" class="sr-only">Structure of the abstract: a title without author names, followed by five headings.</figcaption>
+        <figcaption id="sheetCaption" class="sr-only">Recommended structure of the abstract: a title without author names, followed by five sections, where applicable.</figcaption>
         <div class="sheet-title">
           <span class="sheet-k">Title</span>
           <span class="sheet-bar" aria-hidden="true"></span>
@@ -968,7 +972,7 @@
           <li><span class="sheet-h">Results</span><span class="sheet-hint">Empirical studies: sample size (N), main statistical results and relevant <span class="nowrap">p-values</span>, where applicable</span><span class="sheet-lines" aria-hidden="true"></span></li>
           <li><span class="sheet-h">Discussion / Conclusion</span><span class="sheet-lines" aria-hidden="true"></span></li>
         </ol>
-        <p class="sheet-foot">Only the five sections go into the abstract field. No PDF is needed.</p>
+        <p class="sheet-foot">These five sections are recommended where applicable. No PDF is needed.</p>
       </figure>
 
       <ul class="rules">
@@ -995,6 +999,19 @@
         <li><strong>Enough detail.</strong> Give reviewers enough detail to assess the scientific quality and significance of your findings.</li>
         <li><strong>References.</strong> Avoid them unless they are essential to understanding the research, for example when a study replicates earlier work or applies a specific experimental paradigm.</li>
         <li><strong>SI units.</strong> Use SI units throughout the abstract, where applicable.</li>
+      </ul>
+    </div>
+
+    <div class="reporting reveal">
+      <h3 id="assessedTitle" class="reporting-title">How abstracts are assessed</h3>
+      <p class="reporting-lead">Reviewers assess each abstract for:</p>
+      <ul class="reporting-list reporting-list--criteria" aria-labelledby="assessedTitle">
+        <li>Scientific quality and rigour</li>
+        <li>Originality and relevance to the conference</li>
+        <li>Clarity of the research objectives, questions or arguments</li>
+        <li>Appropriateness of the methods or conceptual approach</li>
+        <li>Quality and significance of the findings, insights or conclusions</li>
+        <li>Clarity, completeness and compliance with the submission guidelines</li>
       </ul>
     </div>
   </div>
@@ -1033,6 +1050,7 @@
       </article>
     </div>
 
+    <p class="formats-note formats-note--posters reveal">Posters will be displayed for three full days of the conference. Materials required for mounting posters will be provided by the organizers. Posters should be self-explanatory, allowing participants to understand the research even when the author is not present.</p>
     <p class="formats-note reveal">The presentation format is decided based on the reviewers’ recommendations.</p>
   </div>
 </section>
@@ -1062,6 +1080,7 @@
         <h3><button class="accordion-trigger" id="faqQ14" aria-expanded="false" aria-controls="faqA14"><span class="accordion-q">What is a poster presentation?</span><span class="accordion-icon" aria-hidden="true"></span></button></h3>
         <div class="accordion-body" id="faqA14" role="region" aria-labelledby="faqQ14">
           <p>You present your study on a printed poster: A0 size (84.1 × 118.9 cm), portrait orientation. During the poster session, you stand by your poster and talk about your work with other participants, one to one or in small groups.</p>
+          <p>Posters will be displayed for three full days of the conference. Materials required for mounting posters will be provided by the organizers. Posters should be self-explanatory, allowing participants to understand the research even when the author is not present.</p>
         </div>
       </div>
 
@@ -1098,7 +1117,7 @@
       <div class="accordion-item">
         <h3><button class="accordion-trigger" id="faqQ5" aria-expanded="false" aria-controls="faqA5"><span class="accordion-q">Do the headings count towards the limit?</span><span class="accordion-icon" aria-hidden="true"></span></button></h3>
         <div class="accordion-body" id="faqA5" role="region" aria-labelledby="faqQ5">
-          <p>Yes. The 400-word limit includes the five headings and any references; the title is a separate field and does not count. The form counts any text between spaces or line breaks as a word, so the count in Word or Google Docs can differ slightly.</p>
+          <p>Yes. The 400-word limit includes any headings and references; the title is a separate field and does not count. The form counts any text between spaces or line breaks as a word, so the count in Word or Google Docs can differ slightly.</p>
         </div>
       </div>
 

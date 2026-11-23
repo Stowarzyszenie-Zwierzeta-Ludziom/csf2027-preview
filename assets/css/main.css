@@ -1630,7 +1630,10 @@ html:not(.speakers-ready) .speaker-slot:focus-within .speaker-flip-inner {
 .award-package-items--four .award-package-item { align-items: center; }
 .award-package-items--four .award-package-item strong { margin-bottom: 0; }
 .award-second .section-header h2 { text-wrap: balance; }
-.award-second .nowrap { white-space: nowrap; font-size: inherit; color: inherit; line-height: inherit; } /* not styled as .award-package-item span */
+.award-second .nowrap,
+.award-package-items--with-deadline .nowrap { white-space: nowrap; font-size: inherit; color: inherit; line-height: inherit; } /* not styled as .award-package-item span */
+
+.award-package-items--with-deadline { grid-template-columns: repeat(2, 1fr); } /* Early Career: three items and the deadline, 2 × 2 */
 
 @media (max-width: 1060px) {
   .award-package-items--four { grid-template-columns: repeat(2, 1fr); }

@@ -258,6 +258,8 @@ html { scroll-padding-top: 80px; }
 /* ═══════════════════════════════════════
    ABSTRACT REQUIREMENTS
    ═══════════════════════════════════════ */
+.section-header p + p { margin-top: 12px; } /* the requirements intro has two paragraphs */
+#requirements .section-header p { text-wrap: pretty; }
 .req-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 32px; align-items: stretch; }
 
 .sheet {
@@ -346,6 +348,12 @@ html { scroll-padding-top: 80px; }
 .reporting-list { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 32px; }
 .reporting-list li { font-size: 0.88rem; line-height: 1.55; color: var(--text-secondary); }
 .reporting-list strong { color: var(--text-primary); }
+.reporting + .reporting { margin-top: 28px; }
+.reporting-lead { margin-bottom: 12px; font-size: 0.88rem; line-height: 1.55; }
+/* review criteria: six short items, two rows of three on wide screens */
+.reporting-list--criteria { gap: 10px 32px; }
+.reporting-list--criteria li { position: relative; padding-left: 16px; }
+.reporting-list--criteria li::before { content: ''; position: absolute; left: 0; top: 0.62em; width: 6px; height: 6px; border-radius: 50%; background: var(--teal); }
 
 /* ═══════════════════════════════════════
    PRESENTATION FORMATS
@@ -402,6 +410,7 @@ html { scroll-padding-top: 80px; }
 .topic p { margin: 0; font-size: 0.82rem; line-height: 1.5; }
 
 .formats-note { margin: 30px auto 0; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px 12px; font-size: 0.92rem; color: var(--text-secondary); text-align: center; }
+.formats-note--posters { max-width: 760px; } /* as wide as the pair of format cards */
 
 /* ═══════════════════════════════════════
    FAQ – ACCORDION
@@ -469,6 +478,7 @@ html { scroll-padding-top: 80px; }
   .req-grid { grid-template-columns: 1fr; }
   .reporting-list { grid-template-columns: minmax(0, 1fr); }
   .formats-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; }
+  .formats-note--posters { max-width: 520px; }
   .tips { grid-template-columns: 1fr; }
   .cta-band { grid-template-columns: 1fr; padding: 36px 32px; }
   .profile-panel { padding: 30px 28px; }
@@ -489,6 +499,7 @@ html { scroll-padding-top: 80px; }
 
 @media (max-width: 600px) {
   .container { padding: 0 20px; } /* 24 px on the home page; the walkthroughs need 20 px at 320 px */
+  #requirements .section-header p { text-align: left; }
   .cfa-hero { padding: 108px 0 56px; }
   .hero-art { max-width: 320px; }
   .steps { grid-template-columns: 1fr; gap: 20px; }
