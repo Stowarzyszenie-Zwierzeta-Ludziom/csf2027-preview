@@ -1,0 +1,597 @@
+/* Award pages (early-career-award/index.html; later also the science communication award),
+   loaded after main.css. main.css gives the theme, font, navigation, footer, buttons, section
+   headers (.section-header, .section-tag), scroll reveal and the reduced-motion rules; this file
+   holds only the award-page pattern. Class names start with "aw-" and say nothing about one
+   particular award, so a second award page can use the same markup. See docs/awards.md. */
+
+/* ═══════════════════════════════════════
+   THEME (the palette is in main.css)
+   ═══════════════════════════════════════ */
+[data-theme="night"] {
+  --aw-text-on-tint: #d6cfc2;           /* body text on yellow-tinted panels (7:1) */
+  --aw-tint-border: rgba(247,209,23,0.22);
+}
+
+/* ═══════════════════════════════════════
+   ROOT & SHARED
+   ═══════════════════════════════════════ */
+html { scroll-padding-top: 80px; } /* anchor links land below the fixed navigation */
+
+.accent { color: var(--accent); }
+
+.aw-section-alt { background: var(--bg-secondary); }
+
+/* ═══════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════ */
+.aw-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 150px 0 90px;
+  background:
+    radial-gradient(ellipse 55% 65% at 82% 38%, rgba(247,209,23,0.07), transparent 65%),
+    radial-gradient(ellipse 45% 55% at 8% 100%, rgba(77,184,168,0.06), transparent 60%),
+    #121212;
+  border-bottom: 1px solid var(--border);
+}
+
+.aw-hero-grid { display: grid; grid-template-columns: 1.3fr 0.8fr; gap: 40px; align-items: center; }
+
+.aw-hero-content { animation: fadeInUp 1s ease both; }
+
+.aw-breadcrumb { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 26px; list-style: none; }
+.aw-breadcrumb a { display: inline-block; padding: 3px 0; color: var(--text-secondary); } /* 24 px target height */
+.aw-breadcrumb a:hover { color: var(--accent); }
+.aw-breadcrumb li + li::before { content: '/'; margin-right: 8px; color: var(--text-muted); }
+
+.aw-hero h1 { font-size: clamp(2.3rem, 4.6vw, 3.5rem); margin-bottom: 24px; text-wrap: balance; }
+.aw-hero h1 .accent { white-space: nowrap; } /* "Scientist Award" stays on one line; released on phones below */
+.aw-h1-sub {
+  display: block;
+  margin-top: 12px;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+.aw-hero-lead { font-size: clamp(1.05rem, 1.6vw, 1.2rem); line-height: 1.65; color: var(--aw-text-on-tint); margin-bottom: 16px; }
+.aw-hero-text { font-size: 1rem; line-height: 1.7; margin-bottom: 14px; }
+
+.aw-hero-actions { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px 16px; }
+
+.aw-hero-visual { animation: fadeIn 1.2s ease 0.3s both; }
+.aw-hero-art { width: 100%; max-width: 440px; height: auto; display: block; margin-left: auto; }
+.aw-art-medal, .aw-art-float { animation: float 6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+
+/* ═══════════════════════════════════════
+   ON THIS PAGE
+   ═══════════════════════════════════════ */
+/* main.css styles every <nav> as the fixed top bar; the page's own navs stay in the flow */
+.aw-toc, .aw-closing { position: static; z-index: auto; transition: none; }
+
+.aw-toc { padding: 18px 0; border-bottom: 1px solid var(--border); background: var(--bg-primary); }
+.aw-toc .aw-toc-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 10px 18px; }
+.aw-toc-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+.aw-toc-list { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+.aw-toc-list a {
+  display: inline-block;
+  padding: 7px 14px;
+  border: 1px solid var(--border-hover);
+  border-radius: 100px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+.aw-toc-list a:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ═══════════════════════════════════════
+   THE AWARD: plenary lecture + what the candidate receives
+   ═══════════════════════════════════════ */
+.aw-award-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; }
+
+.aw-feature {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 22px;
+  padding: 40px 44px;
+  border: 1px solid var(--aw-tint-border);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(160deg, rgba(247,209,23,0.14), rgba(247,209,23,0.05) 70%);
+}
+.aw-feature-icon {
+  width: 56px; height: 56px;
+  border-radius: 16px;
+  background: var(--accent-dim);
+  color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+}
+.aw-feature-icon svg { width: 30px; height: 30px; }
+.aw-feature-text { font-size: clamp(1.15rem, 1.9vw, 1.4rem); font-weight: 600; line-height: 1.55; color: var(--text-primary); }
+.aw-feature-text strong { color: var(--accent); font-weight: 700; }
+
+.aw-gains {
+  padding: 32px 36px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.aw-gains-title { margin-bottom: 18px; font-size: 0.95rem; font-weight: 700; color: var(--text-primary); }
+.aw-gains-list { list-style: none; display: grid; gap: 12px; }
+.aw-gain {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 18px;
+  border: 1px solid var(--aw-tint-border);
+  border-radius: var(--radius-md);
+  background: var(--accent-dim);
+}
+.aw-gain-icon {
+  flex-shrink: 0;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: rgba(247,209,23,0.16);
+  color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+}
+.aw-gain-icon svg { width: 20px; height: 20px; }
+.aw-gain-text { font-size: 0.95rem; line-height: 1.5; color: var(--aw-text-on-tint); }
+.aw-gain-text strong { color: var(--text-primary); font-weight: 700; }
+
+/* ═══════════════════════════════════════
+   NUMBERED CRITERIA (eligibility)
+   ═══════════════════════════════════════ */
+.aw-steps { list-style: none; position: relative; display: grid; gap: 20px; max-width: 880px; margin: 0 auto; }
+.aw-steps::before {
+  content: '';
+  position: absolute;
+  top: 28px; bottom: 28px; left: 23px;
+  border-left: 2px dashed var(--border-hover);
+}
+
+.aw-step { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 24px; align-items: start; }
+.aw-step-num {
+  position: relative;
+  z-index: 1;
+  width: 48px; height: 48px;
+  margin-top: 18px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  box-shadow: 0 0 0 6px var(--bg-secondary);
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.aw-step-body {
+  padding: 28px 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.aw-step-body h3 { font-size: 1.15rem; margin-bottom: 10px; }
+.aw-step-body p { font-size: 0.95rem; line-height: 1.65; }
+
+.aw-options { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 14px; }
+.aw-option {
+  padding: 16px 18px;
+  border: 1px solid var(--border-hover);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-md);
+  background: rgba(255,255,255,0.025);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.aw-cases { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 16px; }
+.aw-case {
+  padding: 18px 20px;
+  border: 1px solid var(--aw-tint-border);
+  border-top: 3px solid var(--accent);
+  border-radius: var(--radius-md);
+  background: rgba(247,209,23,0.05);
+}
+.aw-case--alt { border-color: rgba(77,184,168,0.3); border-top-color: var(--teal); background: var(--teal-dim); }
+.aw-step-body .aw-case p { font-size: 0.9rem; }
+.aw-step-body p.aw-case-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.aw-step-body .aw-case--alt p.aw-case-label { color: var(--teal); }
+.aw-case-label svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+.aw-chips { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.aw-chips li {
+  padding: 6px 16px;
+  border: 1px solid var(--aw-tint-border);
+  border-radius: 100px;
+  background: var(--bg-secondary);
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+/* a quiet note under a list: an icon and one or two sentences */
+.aw-aside {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--border-hover);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.aw-aside svg { width: 18px; height: 18px; flex-shrink: 0; margin-top: 3px; color: var(--teal); }
+.aw-step-body p.aw-aside { font-size: 0.9rem; }
+
+/* ═══════════════════════════════════════
+   TEXT + HIGHLIGHTED NOTE (award lecture)
+   ═══════════════════════════════════════ */
+.aw-split { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center; max-width: 1000px; margin: 0 auto; }
+.aw-prose p { font-size: 1.05rem; line-height: 1.75; }
+.aw-prose p + p { margin-top: 16px; }
+
+.aw-note {
+  padding: 28px 30px;
+  border: 1px solid rgba(247,209,23,0.35);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius-lg);
+  background: rgba(247,209,23,0.08);
+}
+.aw-note p { color: var(--text-primary); font-size: 1rem; line-height: 1.65; }
+.aw-note p.aw-note-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.aw-note-label svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+/* ═══════════════════════════════════════
+   HOW TO APPLY: checklist + application details
+   ═══════════════════════════════════════ */
+.aw-apply-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 24px; align-items: stretch; }
+
+.aw-card {
+  padding: 32px 36px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.aw-card-label { margin-bottom: 16px; font-size: 0.95rem; font-weight: 700; color: var(--text-primary); }
+
+.aw-checklist { list-style: none; display: grid; gap: 14px; }
+.aw-checklist li { position: relative; padding-left: 38px; font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary); }
+.aw-checklist li::before {
+  content: '';
+  position: absolute;
+  top: 1px; left: 0;
+  width: 24px; height: 24px;
+  border: 1px solid rgba(247,209,23,0.45);
+  border-radius: 7px;
+  background: var(--accent-dim);
+}
+.aw-checklist li::after {
+  content: '';
+  position: absolute;
+  top: 6px; left: 9px;
+  width: 6px; height: 11px;
+  border-right: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  transform: rotate(45deg);
+}
+
+.aw-facts {
+  padding: 30px 32px;
+  border: 1px solid var(--aw-tint-border);
+  border-radius: var(--radius-lg);
+  background: var(--accent-dim);
+}
+.aw-facts-title {
+  margin-bottom: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.aw-fact { padding: 16px 0; border-top: 1px solid rgba(247,209,23,0.15); }
+.aw-fact:first-child { border-top: none; }
+.aw-fact:last-child { padding-bottom: 0; }
+.aw-fact dt { display: flex; align-items: flex-start; gap: 10px; font-size: 0.88rem; font-weight: 600; line-height: 1.5; color: var(--aw-text-on-tint); }
+.aw-fact dt svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: 3px; color: var(--accent); }
+.aw-fact dd { margin-top: 2px; padding-left: 26px; font-size: 1rem; line-height: 1.55; color: var(--text-primary); }
+.aw-contact-name { display: block; font-weight: 700; text-wrap: balance; }
+.aw-contact-org { display: block; font-size: 0.92em; font-weight: 400; color: var(--aw-text-on-tint); } /* organisation on its own line under the name */
+.aw-contact-mail { display: inline-block; padding: 2px 0; font-weight: 600; overflow-wrap: anywhere; text-decoration: underline; text-decoration-color: rgba(247,209,23,0.4); text-underline-offset: 3px; }
+.aw-contact-mail:hover { text-decoration-color: currentColor; }
+
+/* ═══════════════════════════════════════
+   DEFINITION LIST (selection criteria)
+   ═══════════════════════════════════════ */
+.aw-narrow { max-width: 880px; margin: 0 auto; }
+.aw-list-lead { margin-bottom: 14px; font-size: 1rem; font-weight: 600; color: var(--text-primary); }
+
+.aw-defs { border-top: 1px solid var(--border-hover); }
+.aw-def { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 6px 28px; padding: 20px 4px; border-bottom: 1px solid var(--border-hover); }
+.aw-def dt { position: relative; padding-left: 18px; font-size: 1rem; font-weight: 700; line-height: 1.55; color: var(--text-primary); }
+.aw-def dt::before { content: ''; position: absolute; top: 0.62em; left: 0; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.aw-def dd { font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary); }
+
+.aw-aside--fair {
+  margin-top: 28px;
+  padding: 20px 22px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  font-size: 0.95rem;
+  max-width: none;
+}
+
+/* ═══════════════════════════════════════
+   TWO-STEP FLOW (notification of results)
+   ═══════════════════════════════════════ */
+.aw-flow { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; max-width: 880px; margin: 0 auto; }
+.aw-flow-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 24px 26px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.aw-flow-item p { margin: 0; font-size: 0.98rem; line-height: 1.6; color: var(--text-primary); }
+.aw-flow-icon {
+  flex-shrink: 0;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--accent-dim);
+  color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+}
+.aw-flow-icon svg { width: 22px; height: 22px; }
+.aw-flow-item:not(:last-child)::after {
+  /* chevron between the two steps */
+  content: '';
+  position: absolute;
+  top: 50%; right: -22px;
+  width: 10px; height: 10px;
+  border-top: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
+  transform: translateY(-50%) rotate(45deg);
+  opacity: 0.7;
+}
+
+/* ═══════════════════════════════════════
+   CLOSING LINKS
+   ═══════════════════════════════════════ */
+.aw-closing { padding: 56px 0; border-top: 1px solid var(--border); }
+.aw-closing .aw-closing-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px 32px; }
+.aw-back-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 4px; font-size: 0.95rem; font-weight: 600; color: var(--text-secondary); }
+.aw-back-link:hover { color: var(--accent); }
+.aw-back-link svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+/* ═══════════════════════════════════════
+   ADDITIONS FOR LONGER AWARD TEXTS
+   (first used by science-communication-award/)
+   ═══════════════════════════════════════ */
+
+/* hero with a long award name: smaller h1, the second part of the name on its own line */
+.aw-hero--long h1 { font-size: clamp(1.9rem, 3.9vw, 3rem); margin-bottom: 18px; }
+.aw-h1-line { display: block; margin-top: 8px; font-size: 0.62em; line-height: 1.25; letter-spacing: -0.01em; color: var(--accent); text-wrap: balance; }
+.aw-hero-byline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border: 1px solid var(--aw-tint-border);
+  border-radius: 100px;
+  background: var(--accent-dim);
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--aw-text-on-tint);
+}
+.aw-hero-byline svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--accent); }
+.aw-hero-kicker { margin: 30px 0 12px; font-size: 0.73rem; font-weight: 700; letter-spacing: 0.12em; line-height: 1.4; text-transform: uppercase; color: var(--accent); } /* looks like .section-tag */
+.aw-hero-strong { color: var(--text-primary); font-weight: 600; }
+
+/* tiles: what the award includes (title + description) */
+.aw-tiles { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto; }
+.aw-tile {
+  padding: 30px 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.aw-tile--feature { border-color: var(--aw-tint-border); background: linear-gradient(160deg, rgba(247,209,23,0.14), rgba(247,209,23,0.05) 70%); }
+.aw-tile-icon {
+  width: 48px; height: 48px;
+  border-radius: 14px;
+  background: var(--accent-dim);
+  color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 18px;
+}
+.aw-tile-icon svg { width: 24px; height: 24px; }
+.aw-tile h3 { margin-bottom: 8px; font-size: 1.1rem; line-height: 1.35; letter-spacing: -0.01em; text-wrap: balance; }
+.aw-tile p { font-size: 0.95rem; line-height: 1.65; }
+.aw-tile--feature p { color: var(--aw-text-on-tint); }
+
+/* labelled rows: a short label on the left, the text on the right */
+.aw-rows { max-width: 1000px; margin: 0 auto; }
+.aw-row { display: grid; grid-template-columns: minmax(0, 14rem) minmax(0, 1fr); gap: 16px 40px; padding: 40px 0; border-top: 1px solid var(--border-hover); }
+.aw-row:first-child { border-top: none; padding-top: 0; }
+.aw-row:last-child { padding-bottom: 0; }
+.aw-row-title { display: flex; align-items: center; gap: 12px; align-self: start; font-size: 1.1rem; line-height: 1.3; }
+.aw-row-num {
+  flex-shrink: 0;
+  width: 30px; height: 30px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+}
+.aw-row-body > p { font-size: 0.98rem; line-height: 1.7; }
+.aw-row-body > p + p { margin-top: 12px; }
+.aw-row-body p.aw-row-lead { font-size: 1.02rem; font-weight: 600; color: var(--text-primary); }
+.aw-row-body p.aw-row-intro { font-size: 1.05rem; color: var(--text-primary); }
+.aw-row-body .aw-checklist { max-width: 65ch; }
+.aw-row-body .aw-row-lead + .aw-formats,
+.aw-row-body .aw-row-lead + .aw-checklist { margin-top: 16px; }
+
+.aw-formats { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.aw-formats li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--aw-text-on-tint);
+}
+.aw-format-icon {
+  flex-shrink: 0;
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--teal-dim);
+  color: var(--teal);
+  display: flex; align-items: center; justify-content: center;
+}
+.aw-format-icon svg { width: 18px; height: 18px; }
+
+.aw-checklist--conditions li { color: var(--text-primary); }
+
+/* two-step flow with longer sentences: icon at the top, text left-aligned */
+.aw-flow--text .aw-flow-item { align-items: flex-start; }
+.aw-flow--text .aw-flow-item:not(:last-child)::after { display: none; } /* the two statements have no stated order: no arrow */
+.aw-flow--text .aw-flow-item p { font-size: 0.95rem; line-height: 1.65; }
+.aw-notes { margin-top: 8px; }
+
+/* numbered rail outside the alternate background: the number's ring follows the page background */
+section:not(.aw-section-alt) .aw-step-num { background: var(--bg-primary); box-shadow: 0 0 0 6px var(--bg-primary); }
+.aw-steps-lead { max-width: 880px; margin: 0 auto 18px; font-size: 1.02rem; font-weight: 600; color: var(--text-primary); }
+.aw-h3-note { font-size: 0.78em; font-weight: 600; letter-spacing: 0; color: var(--text-secondary); white-space: nowrap; }
+
+.aw-defs--compact { margin-top: 12px; }
+.aw-defs--compact .aw-def { grid-template-columns: 200px minmax(0, 1fr); gap: 4px 24px; padding: 14px 2px; }
+.aw-defs--compact dt { font-size: 0.93rem; }
+.aw-defs--compact dd { font-size: 0.92rem; }
+
+/* application details in one wide row */
+.aw-facts--wide { max-width: 880px; margin: 40px auto 0; }
+.aw-facts--wide .aw-facts-list { display: grid; grid-template-columns: 1fr 1.6fr 1fr; gap: 0; margin-top: 10px; }
+.aw-facts--wide .aw-fact { padding: 4px 22px; border-top: none; border-left: 1px solid rgba(247,209,23,0.15); }
+.aw-facts--wide .aw-fact:first-child { padding-left: 0; border-left: none; }
+.aw-facts--wide .aw-fact:last-child { padding-right: 0; }
+.aw-fact--key dd { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.01em; color: var(--accent); }
+
+/* closing statements under a list, one of them highlighted */
+.aw-closing-notes { margin-top: 28px; }
+.aw-closing-notes > p { font-size: 0.98rem; line-height: 1.7; }
+.aw-closing-notes > p + p { margin-top: 16px; }
+.aw-closing-notes p.aw-highlight {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: none;
+  padding: 20px 22px;
+  border: 1px solid rgba(77,184,168,0.3);
+  border-left: 4px solid var(--teal);
+  border-radius: var(--radius-md);
+  background: var(--teal-dim);
+  font-size: 1.02rem;
+  color: var(--text-primary);
+}
+.aw-highlight svg { width: 22px; height: 22px; flex-shrink: 0; margin-top: 2px; color: var(--teal); }
+
+/* calm prose block (about the presenting organisation) */
+.aw-about { max-width: 760px; margin: 0 auto; }
+.aw-about p { font-size: 1.05rem; line-height: 1.75; }
+.aw-about p + p { margin-top: 16px; }
+.aw-about a { font-weight: 600; text-decoration: underline; text-decoration-color: rgba(247,209,23,0.4); text-underline-offset: 3px; }
+.aw-about a:hover { text-decoration-color: currentColor; }
+
+/* ═══════════════════════════════════════
+   RESPONSIVE (900 and 600 px, as on the Call for Abstracts page)
+   ═══════════════════════════════════════ */
+@media (max-width: 900px) {
+  .aw-hero { padding: 120px 0 64px; }
+  .aw-hero-grid { grid-template-columns: 1fr; gap: 36px; }
+  .aw-hero-visual { display: none; } /* decorative; stacked under the text it only adds empty height */
+  .aw-award-grid,
+  .aw-split,
+  .aw-apply-grid { grid-template-columns: minmax(0, 1fr); }
+  .aw-split { gap: 28px; }
+  .aw-flow { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .aw-flow-item:not(:last-child)::after { display: none; }
+  .section-header { margin-bottom: 40px; }
+  .aw-row { grid-template-columns: minmax(0, 1fr); padding: 32px 0; }
+  .aw-facts--wide .aw-facts-list { grid-template-columns: minmax(0, 1fr); }
+  .aw-facts--wide .aw-fact { padding: 16px 0; border-left: none; border-top: 1px solid rgba(247,209,23,0.15); }
+  .aw-facts--wide .aw-fact:first-child { border-top: none; }
+}
+
+@media (max-width: 600px) {
+  .aw-hero { padding: 108px 0 56px; }
+  .aw-hero h1 .accent { white-space: normal; }
+  .aw-hero-byline { border-radius: 16px; }
+  /* long award name: "Dogs and Science Award" stays on one line from 360 px (its width is about 12 x the font size;
+     the space is the viewport minus 48 px); the yellow second line keeps its earlier phone size */
+  .aw-hero--long h1 { font-size: clamp(1.4rem, calc(7.8vw - 4px), 1.9rem); }
+  .aw-hero--long .aw-h1-line { font-size: 1.18rem; }
+  .aw-hero-actions .btn { width: 100%; justify-content: center; }
+  .aw-toc-label { width: 100%; }
+  .aw-feature { padding: 28px 24px; gap: 18px; }
+  .aw-gains, .aw-card, .aw-facts { padding: 26px 22px; }
+  .aw-gain { padding: 14px 16px; gap: 14px; }
+  /* phones: no side rail; the number moves into the card, next to the heading, to give the text the full width */
+  .aw-steps { gap: 16px; }
+  .aw-steps::before { display: none; }
+  .aw-step { position: relative; grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .aw-step-num { position: absolute; top: 20px; left: 20px; width: 32px; height: 32px; margin: 0; font-size: 0.9rem; box-shadow: none; background: transparent; }
+  .aw-step-body { padding: 22px 20px; }
+  .aw-step-body h3 { display: flex; align-items: center; min-height: 28px; padding-left: 44px; }
+  .aw-options, .aw-cases { grid-template-columns: minmax(0, 1fr); }
+  .aw-note { padding: 24px 22px; border-left-width: 3px; }
+  .aw-def { grid-template-columns: minmax(0, 1fr); padding: 18px 2px; }
+  .aw-fact dd { padding-left: 0; }
+  .aw-flow-item { padding: 20px; gap: 14px; }
+  .aw-closing { padding: 44px 0; }
+  .aw-closing .aw-closing-inner { flex-direction: column; }
+  /* additions for longer award texts */
+  .aw-step-body h3 { flex-wrap: wrap; column-gap: 0.3em; }
+  section:not(.aw-section-alt) .aw-step-num { background: transparent; box-shadow: none; }
+  .aw-tiles, .aw-formats { grid-template-columns: minmax(0, 1fr); }
+  .aw-tile { padding: 24px 22px; }
+  .aw-defs--compact .aw-def { grid-template-columns: minmax(0, 1fr); }
+  .aw-closing-notes p.aw-highlight { padding: 18px; border-left-width: 3px; }
+}

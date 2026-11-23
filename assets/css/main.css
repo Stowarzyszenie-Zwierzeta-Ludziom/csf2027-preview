@@ -1508,6 +1508,33 @@ html:not(.speakers-ready) .speaker-slot:focus-within .speaker-flip-inner {
   color: var(--text-secondary);
 }
 
+/* Link to the award page (early-career-award/) */
+.award-more {
+  margin-top: 40px;
+  text-align: center;
+}
+
+/* Second award (science-communication-award/): a separate block below the first */
+.award-second {
+  margin-top: 72px;
+  padding-top: 72px;
+  border-top: 1px solid var(--border-hover);
+}
+
+.award-package-items--four {
+  list-style: none;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.award-package-items--four .award-package-item { align-items: center; }
+.award-package-items--four .award-package-item strong { margin-bottom: 0; }
+.award-second .section-header h2 { text-wrap: balance; }
+.award-second .nowrap { white-space: nowrap; font-size: inherit; color: inherit; line-height: inherit; } /* not styled as .award-package-item span */
+
+@media (max-width: 1060px) {
+  .award-package-items--four { grid-template-columns: repeat(2, 1fr); }
+}
+
 /* ═══════════════════════════════════════
    PRICING
    ═══════════════════════════════════════ */
